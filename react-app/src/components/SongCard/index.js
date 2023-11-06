@@ -15,7 +15,7 @@ const SongCard = ({ song }) => {
 
       <audio controls>
         <source src={song.content} type="audio/mpeg" />
-        Your browser does not support the audio element.
+        audio element
       </audio>
 
       <button onClick={togglePlay}>
