@@ -3,6 +3,7 @@ const GET_ALL_SONGS = "songs/GET_ALL_SONGS";
 const GET_SONG_BY_ID = "songs/GET_SONG_BY_ID";
 const UPLOAD_SONG = "songs/UPLOAD_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
+const UPDATE_SONG = "songs/UPDATE_SONG";
 
 const getAllSongs = (songs) => ({
   type: GET_ALL_SONGS,
@@ -22,6 +23,11 @@ const uploadSong = (song) => ({
 const deleteSong = (songId) => ({
   type: DELETE_SONG,
   payload: songId,
+});
+
+const updateSong = (updatedSong) => ({
+  type: UPDATE_SONG,
+  payload: updatedSong,
 });
 
 export const fetchAllSongs = () => async (dispatch) => {
@@ -67,6 +73,22 @@ export const removeSong = (songId) => async (dispatch) => {
   }
 };
 
+export const editSong = (songId, updatedData) => async (dispatch) => {
+  const response = await fetch(`/api/songs/${songId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateSong(data));
+  } else {
+  }
+};
+
 const initialState = { songs: [] };
 
 export default function songsReducer(state = initialState, action) {
@@ -82,6 +104,14 @@ export default function songsReducer(state = initialState, action) {
         ...state,
         songs: state.songs.filter((song) => song.id !== action.payload),
       };
+    case UPDATE_SONG:
+      const updatedIndex = state.songs.findIndex((song) => song.id === action.payload.id);
+      if (updatedIndex !== -1) {
+        const updatedSongs = [...state.songs];
+        updatedSongs[updatedIndex] = action.payload;
+        return { ...state, songs: updatedSongs };
+      }
+      return state;
     default:
       return state;
   }
