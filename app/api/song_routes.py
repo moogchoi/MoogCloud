@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import db, Song
 from flask_login import login_required, current_user
 from app.forms import SongForm
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 song_routes = Blueprint('songs', __name__)
 
@@ -35,10 +36,19 @@ def upload_song():
   form = SongForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
+
+    content = form.data['content']
+    content.filename = get_unique_filename(content.filename)
+    upload = upload_file_to_s3(content)
+    print(upload)
+
+    if "url" not in upload:
+       return {'errors': validation_errors_to_error_messages(upload.errors)}, 400
+
     song = Song(
       user_id=current_user.id,
       name=form.data['name'],
-      content=form.data['content'],
+      content=upload["url"],
       duration=form.data['duration'],
       img=form.data['img'],
       description=form.data['description']
@@ -47,6 +57,22 @@ def upload_song():
     db.session.commit()
     return song.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# update a song
+@song_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_song(id):
+    song = Song.query.get(id)
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        song.name = form.data['name']
+        song.duration = form.data['duration']
+        song.img = form.data['img']
+        song.description = form.data['description']
+        db.session.commit()
+        return song.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # delete a song
 @song_routes.route('/<int:id>', methods=['DELETE'])
