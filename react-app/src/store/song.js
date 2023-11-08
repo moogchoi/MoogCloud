@@ -41,18 +41,25 @@ export const fetchSongById = (songId) => async (dispatch) => {
 };
 
 export const createSong = (songData) => async (dispatch) => {
-  const response = await fetch("/api/songs/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(songData),
-  });
+  try {
+    const response = await fetch("/api/songs/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(songData),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(uploadSong(data));
-  } else {
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(uploadSong(data));
+      return { success: true };
+    } else {
+      const errorData = await response.json();
+      return { errors: errorData.errors };
+    }
+  } catch (error) {
+    return { errors: ['An error occurred while creating the song.'] };
   }
 };
 
