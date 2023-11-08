@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import CreateSongForm from "./components/CreateSongForm";
+import SongDetailsPage from "./components/SongDetailsPage";
+import EditSongForm from "./components/EditSongForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,12 @@ function App() {
           </Route>
           <Route exact path="/new">
             <CreateSongForm />
+          </Route>
+          <Route exact path="/songs/:songId">
+            <SongDetailsPage />
+          </Route>
+          <Route path="/songs/edit/:songId">
+            <EditSongForm />
           </Route>
         </Switch>
       )}
