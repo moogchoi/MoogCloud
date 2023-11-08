@@ -3,6 +3,7 @@ import SongCard from '../SongCard'
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllSongs } from '../../store/song';
+import { NavLink, useHistory } from 'react-router-dom';
 
 export default function SplashPage() {
   const dispatch = useDispatch();
@@ -15,6 +16,9 @@ export default function SplashPage() {
   return (
     <div className="landing-container">
       <h1>Welcome to MoogCloud!</h1>
+      <NavLink to="/new">
+        Upload Song
+      </NavLink>
       <div>
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />
