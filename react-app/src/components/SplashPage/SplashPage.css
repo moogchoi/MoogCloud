@@ -1,0 +1,10 @@
+.landing-container{
+  border: 1px solid grey;
+  background: orange;
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
