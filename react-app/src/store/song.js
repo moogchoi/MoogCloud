@@ -86,18 +86,26 @@ export const removeSong = (songId) => async (dispatch) => {
 };
 
 export const editSong = (songId, updatedData) => async (dispatch) => {
-  const response = await fetch(`/api/songs/${songId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedData),
-  });
+  try {
+    const response = await fetch(`/api/songs/${songId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(updateSong(data));
-  } else {
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateSong(data));
+      return data;
+    } else {
+      const data = await response.json();
+      return { errors: data.errors };
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    return { errors: ['Network error'] };
   }
 };
 

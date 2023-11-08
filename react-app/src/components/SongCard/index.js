@@ -1,5 +1,6 @@
-import './SongCard.css'
-import React, { useState, useEffect } from 'react';
+import './SongCard.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SongCard = ({ song }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -10,6 +11,7 @@ const SongCard = ({ song }) => {
 
   return (
     <div className="song-card">
+      <Link to={`/songs/${song.id}`}>View Details</Link>
       <h3>{song.name}</h3>
       <p>{song.description}</p>
 
