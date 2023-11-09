@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Song
 from flask_login import login_required, current_user
-from app.forms import SongForm
+from app.forms import SongForm, EditSongForm
 from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 song_routes = Blueprint('songs', __name__)
@@ -63,12 +63,10 @@ def upload_song():
 @login_required
 def update_song(id):
     song = Song.query.get(id)
-    form = SongForm()
+    form = EditSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         song.name = form.data['name']
-        song.duration = form.data['duration']
-        song.img = form.data['img']
         song.description = form.data['description']
         db.session.commit()
         return song.to_dict()
