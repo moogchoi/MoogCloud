@@ -15,6 +15,7 @@ class Song(db.Model):
   description = db.Column(db.String)
 
   user = db.relationship('User', back_populates='songs')
+  comments = db.relationship('Comment', back_populates='song')
 
   def to_dict(self):
     return {
