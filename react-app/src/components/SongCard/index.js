@@ -19,10 +19,6 @@ const SongCard = ({ song }) => {
         <source src={song.content} type="audio/mpeg" />
         audio element
       </audio>
-
-      <button onClick={togglePlay}>
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
     </div>
   );
 };

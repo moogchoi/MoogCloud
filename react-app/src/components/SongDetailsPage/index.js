@@ -11,7 +11,6 @@ const SongDetailsPage = () => {
   const song = useSelector((state) => state.songs.currentSong);
   const comments = useSelector((state) => state.comments.comments);
   const [errors, setErrors] = useState([]);
-  const userId = useSelector((state) => state.session.user.id);
   const [newComment, setNewComment] = useState('');
 
   const handleSubmit = async (e) => {
@@ -19,8 +18,6 @@ const SongDetailsPage = () => {
     setErrors([]);
 
     const commentData = {
-      userId,
-      songId,
       text: newComment,
     };
 
