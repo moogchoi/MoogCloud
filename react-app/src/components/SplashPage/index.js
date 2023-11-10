@@ -15,7 +15,6 @@ export default function SplashPage() {
 
   return (
     <div className="landing-container">
-      <h1>Welcome to MoogCloud!</h1>
       <NavLink to="/new">
         Upload Song
       </NavLink>
