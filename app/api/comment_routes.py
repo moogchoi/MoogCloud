@@ -23,7 +23,7 @@ def get_comments(song_id):
 @comment_routes.route('/<int:song_id>', methods=['POST'])
 @login_required
 def add_comment(song_id):
-    form = CommentForm(request.form)
+    form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment = Comment(
