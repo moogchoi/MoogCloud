@@ -21,6 +21,15 @@ def get_all_songs():
   song_list = [song.to_dict() for song in songs]
   return jsonify(song_list)
 
+# get all songs owned by the current user
+@song_routes.route('/user')
+@login_required
+def get_user_songs():
+    songs = Song.query.filter_by(user_id=current_user.id).all()
+    song_list = [song.to_dict() for song in songs]
+    return jsonify(song_list)
+
+
 # get song by id
 @song_routes.route('/<int:id>')
 def get_song_by_id(id):
