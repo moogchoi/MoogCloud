@@ -88,6 +88,7 @@ export const removeSong = (songId) => async (dispatch) => {
   if (response.ok) {
     dispatch(deleteSong(songId));
   } else {
+    console.error('Error deleting song:', response.statusText);
   }
 };
 
@@ -123,7 +124,7 @@ export const fetchUserSongs = () => async (dispatch) => {
   }
 };
 
-const initialState = { songs: [] };
+const initialState = { songs: [], userSongs: [] };
 
 export default function songsReducer(state = initialState, action) {
   switch (action.type) {
@@ -131,6 +132,8 @@ export default function songsReducer(state = initialState, action) {
       return { ...state, songs: action.payload };
     case GET_SONG_BY_ID:
       return { ...state, currentSong: action.payload };
+    case GET_USER_SONGS:
+      return { ...state, userSongs: action.payload };
     case UPLOAD_SONG:
       return { ...state, songs: [...state.songs, action.payload] };
     case UPDATE_SONG:

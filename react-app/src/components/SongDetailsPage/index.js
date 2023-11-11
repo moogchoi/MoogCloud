@@ -72,9 +72,9 @@ const SongDetailsPage = () => {
       </ul>
 
       {/* {currentUser && currentUser.id === song.user_id && ( */}
-        <Link to={`/songs/edit/${songId}`}>
+        {/* <Link to={`/songs/edit/${songId}`}>
           <button>Edit Song</button>
-        </Link>
+        </Link> */}
       {/* )} */}
     </div>
   );
