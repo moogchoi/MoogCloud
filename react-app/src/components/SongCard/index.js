@@ -11,14 +11,10 @@ const SongCard = ({ song }) => {
 
   return (
     <div className="song-card">
-      <Link to={`/songs/${song.id}`}>View Details</Link>
       <h3>{song.name}</h3>
       <p>{song.description}</p>
 
-      <audio controls>
-        <source src={song.content} type="audio/mpeg" />
-        audio element
-      </audio>
+      <Link to={`/songs/${song.id}`}>View Details</Link>
     </div>
   );
 };

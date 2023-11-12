@@ -7,7 +7,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 
 export default function SplashPage() {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs.songs); // Access songs from the state
+  const songs = useSelector((state) => state.songs.songs);
 
   useEffect(() => {
     dispatch(fetchAllSongs());
@@ -15,9 +15,6 @@ export default function SplashPage() {
 
   return (
     <div className="landing-container">
-      <NavLink to="/new">
-        Upload Song
-      </NavLink>
       <div>
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />

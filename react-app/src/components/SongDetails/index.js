@@ -9,11 +9,7 @@ const SongDetails = ({ song }) => {
     <div className="song-details">
       <h2>{song.name}</h2>
       <p>{song.description}</p>
-
-      <audio controls>
-        <source src={song.content} type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
+      <img src={song.img}></img>
     </div>
   );
 };
