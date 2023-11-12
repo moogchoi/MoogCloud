@@ -51,6 +51,11 @@ def upload_song():
     upload = upload_file_to_s3(content)
     print(upload)
 
+    img = form.data['img']
+    img.filename = get_unique_filename(img.filename)
+    imgUpload = upload_file_to_s3(img)
+    print(imgUpload)
+
     if "url" not in upload:
        return {'errors': validation_errors_to_error_messages(upload.errors)}, 400
 
@@ -59,7 +64,7 @@ def upload_song():
       name=form.data['name'],
       content=upload["url"],
       duration=form.data['duration'],
-      img=form.data['img'],
+      img=imgUpload["url"],
       description=form.data['description']
     )
     db.session.add(song)

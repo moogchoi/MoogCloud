@@ -29,6 +29,8 @@ const SongDetailsPage = () => {
     };
 
     const response = await dispatch(addNewComment(songId, commentData));
+
+    setNewComment('');
   };
 
   useEffect(() => {
@@ -39,8 +41,6 @@ const SongDetailsPage = () => {
   if (!currentUser) {
     return <p>Please log in to view this page.</p>;
   }
-
-  console.log("user id:", song);
 
   return (
     <div>
@@ -71,11 +71,6 @@ const SongDetailsPage = () => {
         ))}
       </ul>
 
-      {/* {currentUser && currentUser.id === song.user_id && ( */}
-        {/* <Link to={`/songs/edit/${songId}`}>
-          <button>Edit Song</button>
-        </Link> */}
-      {/* )} */}
     </div>
   );
 };
