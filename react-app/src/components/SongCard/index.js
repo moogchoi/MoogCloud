@@ -10,12 +10,11 @@ const SongCard = ({ song }) => {
   };
 
   return (
-    <div className="song-card">
+    <Link to={`/songs/${song.id}`} className="song-card">
       <h3>{song.name}</h3>
       <p>{song.description}</p>
-
-      <Link to={`/songs/${song.id}`}>View Details</Link>
-    </div>
+      <img src={song.img} alt={song.name}></img>
+    </Link>
   );
 };
 

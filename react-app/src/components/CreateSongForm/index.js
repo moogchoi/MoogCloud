@@ -79,9 +79,9 @@ const CreateSongForm = () => {
       <label>
         Image (URL):
         <input
-          type="text"
-          value={img}
-          onChange={(e) => setImg(e.target.value)}
+          type="file"
+          accepts="image/*"
+          onChange={(e) => setImg(e.target.files[0])}
         />
       </label>
       <label>
