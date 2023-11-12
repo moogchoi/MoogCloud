@@ -9,5 +9,5 @@ class SongForm(FlaskForm):
   # content = StringField('Content (URL)', validators=[DataRequired(), URL()])
   content = FileField("Audio File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
   duration = IntegerField('Duration', validators=[DataRequired()])
-  img = StringField('Image (URL)', validators=[DataRequired(), URL()])
+  img = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
   description = StringField('Description', validators=[DataRequired()])
