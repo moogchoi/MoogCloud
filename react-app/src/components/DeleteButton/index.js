@@ -10,7 +10,7 @@ const DeleteButton = ({ songId }) => {
   const handleDelete = async () => {
     await dispatch(removeSong(songId));
 
-    history.push('/');
+    history.push('/current');
   };
 
   return (

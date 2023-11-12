@@ -21,6 +21,15 @@ def get_all_songs():
   song_list = [song.to_dict() for song in songs]
   return jsonify(song_list)
 
+# get all songs owned by the current user
+@song_routes.route('/user')
+@login_required
+def get_user_songs():
+    songs = Song.query.filter_by(user_id=current_user.id).all()
+    song_list = [song.to_dict() for song in songs]
+    return jsonify(song_list)
+
+
 # get song by id
 @song_routes.route('/<int:id>')
 def get_song_by_id(id):
@@ -63,14 +72,16 @@ def upload_song():
 @login_required
 def update_song(id):
     song = Song.query.get(id)
-    form = EditSongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        song.name = form.data['name']
-        song.description = form.data['description']
-        db.session.commit()
-        return song.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    if song and song.user_id == current_user.id:
+      song = Song.query.get(id)
+      form = EditSongForm()
+      form['csrf_token'].data = request.cookies['csrf_token']
+      if form.validate_on_submit():
+          song.name = form.data['name']
+          song.description = form.data['description']
+          db.session.commit()
+          return song.to_dict()
+      return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # delete a song
 @song_routes.route('/<int:id>', methods=['DELETE'])

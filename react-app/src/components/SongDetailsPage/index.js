@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { fetchSongById } from '../../store/song';
 import { fetchComments, addNewComment } from '../../store/comment';
 import SongDetails from '../SongDetails';
@@ -10,17 +10,21 @@ const SongDetailsPage = () => {
   const dispatch = useDispatch();
   const song = useSelector((state) => state.songs.currentSong);
   const comments = useSelector((state) => state.comments.comments);
+  const currentUser = useSelector((state) => state.session.user?.id);
   const [errors, setErrors] = useState([]);
-  const userId = useSelector((state) => state.session.user.id);
   const [newComment, setNewComment] = useState('');
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
 
+    if (!currentUser) {
+      history.pushState('/login');
+      return;
+    }
+
     const commentData = {
-      userId,
-      songId,
       text: newComment,
     };
 
@@ -31,6 +35,12 @@ const SongDetailsPage = () => {
     dispatch(fetchSongById(songId));
     dispatch(fetchComments(songId));
   }, [dispatch, songId]);
+
+  if (!currentUser) {
+    return <p>Please log in to view this page.</p>;
+  }
+
+  console.log("user id:", song);
 
   return (
     <div>
@@ -61,9 +71,11 @@ const SongDetailsPage = () => {
         ))}
       </ul>
 
-      <Link to={`/songs/edit/${songId}`}>
-        <button>Edit Song</button>
-      </Link>
+      {/* {currentUser && currentUser.id === song.user_id && ( */}
+        {/* <Link to={`/songs/edit/${songId}`}>
+          <button>Edit Song</button>
+        </Link> */}
+      {/* )} */}
     </div>
   );
 };
