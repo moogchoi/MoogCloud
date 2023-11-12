@@ -10,6 +10,7 @@ import CreateSongForm from "./components/CreateSongForm";
 import SongDetailsPage from "./components/SongDetailsPage";
 import EditSongForm from "./components/EditSongForm";
 import ManageSongs from "./components/ManageSongs";
+import Layout from "./components/Layout";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Layout />
       {isLoaded && (
         <Switch>
           <Route path="/login" >
