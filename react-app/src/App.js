@@ -9,6 +9,7 @@ import SplashPage from "./components/SplashPage";
 import CreateSongForm from "./components/CreateSongForm";
 import SongDetailsPage from "./components/SongDetailsPage";
 import EditSongForm from "./components/EditSongForm";
+import ManageSongs from "./components/ManageSongs";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/songs/edit/:songId">
             <EditSongForm />
+          </Route>
+          <Route exact path="/current">
+            <ManageSongs />
           </Route>
         </Switch>
       )}

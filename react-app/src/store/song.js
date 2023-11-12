@@ -4,6 +4,7 @@ const GET_SONG_BY_ID = "songs/GET_SONG_BY_ID";
 const UPLOAD_SONG = "songs/UPLOAD_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
 const UPDATE_SONG = "songs/UPDATE_SONG";
+const GET_USER_SONGS = "songs/GET_USER_SONGS";
 
 const getAllSongs = (songs) => ({
   type: GET_ALL_SONGS,
@@ -28,6 +29,11 @@ const deleteSong = (songId) => ({
 const updateSong = (updatedSong) => ({
   type: UPDATE_SONG,
   payload: updatedSong,
+});
+
+const getUserSongs = (songs) => ({
+  type: GET_USER_SONGS,
+  payload: songs,
 });
 
 export const fetchAllSongs = () => async (dispatch) => {
@@ -82,6 +88,7 @@ export const removeSong = (songId) => async (dispatch) => {
   if (response.ok) {
     dispatch(deleteSong(songId));
   } else {
+    console.error('Error deleting song:', response.statusText);
   }
 };
 
@@ -109,7 +116,15 @@ export const editSong = (songId, updatedData) => async (dispatch) => {
   }
 };
 
-const initialState = { songs: [] };
+export const fetchUserSongs = () => async (dispatch) => {
+  const response = await fetch("/api/songs/user");
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getUserSongs(data));
+  }
+};
+
+const initialState = { songs: [], userSongs: [] };
 
 export default function songsReducer(state = initialState, action) {
   switch (action.type) {
@@ -117,6 +132,8 @@ export default function songsReducer(state = initialState, action) {
       return { ...state, songs: action.payload };
     case GET_SONG_BY_ID:
       return { ...state, currentSong: action.payload };
+    case GET_USER_SONGS:
+      return { ...state, userSongs: action.payload };
     case UPLOAD_SONG:
       return { ...state, songs: [...state.songs, action.payload] };
     case UPDATE_SONG:
