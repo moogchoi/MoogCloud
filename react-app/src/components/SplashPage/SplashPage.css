@@ -6,4 +6,12 @@
   align-items: center;
   justify-content: center;
   z-index: 4;
+  display: flex;
+}
+
+.song-containers {
+  display: grid;
+  grid-template-columns: repeat(4,250px);
+  grid-template-rows: 300px 300px;
+  place-items: center;
 }

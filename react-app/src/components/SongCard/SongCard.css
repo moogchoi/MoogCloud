@@ -1,4 +1,19 @@
 .song-card {
   text-decoration: none;
   color: black;
+  font-size: 14px;
+  width: 100%;
+}
+
+.song-card-img {
+  height: 200px;
+  width: 200px;
+}
+
+.song-card-description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 200px;
+  height: 1.2em;
+  white-space: nowrap;
 }

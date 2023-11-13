@@ -31,7 +31,8 @@ function SignupFormModal() {
 
 	return (
 		<>
-			<h1>Sign Up</h1>
+		<div className="sign-up-container">
+			<h3>Sign Up</h3>
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
@@ -74,8 +75,9 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button className="demo-login" type="submit">Sign Up</button>
 			</form>
+		</div>
 		</>
 	);
 }
