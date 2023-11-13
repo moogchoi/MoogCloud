@@ -11,9 +11,9 @@ const SongCard = ({ song }) => {
 
   return (
     <Link to={`/songs/${song.id}`} className="song-card">
-      <h3>{song.name}</h3>
-      <p>{song.description}</p>
-      <img src={song.img} alt={song.name}></img>
+      <div>{song.name}</div>
+      <div className='song-card-description'>{song.description}</div>
+      <img className='song-card-img' src={song.img} alt={song.name}></img>
     </Link>
   );
 };

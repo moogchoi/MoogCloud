@@ -15,7 +15,7 @@ export default function SplashPage() {
 
   return (
     <div className="landing-container">
-      <div>
+      <div className='song-containers'>
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />
       ))}

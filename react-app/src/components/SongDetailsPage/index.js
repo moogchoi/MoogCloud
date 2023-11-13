@@ -19,11 +19,6 @@ const SongDetailsPage = () => {
     e.preventDefault();
     setErrors([]);
 
-    if (!currentUser) {
-      history.pushState('/login');
-      return;
-    }
-
     const commentData = {
       text: newComment,
     };
@@ -37,10 +32,6 @@ const SongDetailsPage = () => {
     dispatch(fetchSongById(songId));
     dispatch(fetchComments(songId));
   }, [dispatch, songId]);
-
-  if (!currentUser) {
-    return <p>Please log in to view this page.</p>;
-  }
 
   return (
     <div>
