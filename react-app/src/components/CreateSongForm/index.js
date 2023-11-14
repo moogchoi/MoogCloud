@@ -6,7 +6,6 @@ const CreateSongForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
-  const [duration, setDuration] = useState(0);
   const [img, setImg] = useState('');
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
@@ -18,7 +17,6 @@ const CreateSongForm = () => {
     // const songData = {
     //   name,
     //   content,
-    //   duration,
     //   img,
     //   description,
     // };
@@ -26,7 +24,6 @@ const CreateSongForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("content", content);
-    formData.append("duration", duration);
     formData.append("img", img);
     formData.append("description", description);
 
@@ -37,7 +34,6 @@ const CreateSongForm = () => {
     } else {
       setName('');
       setContent('');
-      setDuration(0);
       setImg('');
       setDescription('');
     }
@@ -68,14 +64,7 @@ const CreateSongForm = () => {
           onChange={(e) => setContent(e.target.files[0])}
         />
       </label>
-      <label>
-        Duration (seconds):
-        <input
-          type="number"
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-        />
-      </label>
+
       <label>
         Image (URL):
         <input
