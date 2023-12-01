@@ -14,7 +14,7 @@ class Song(db.Model):
   description = db.Column(db.String)
 
   user = db.relationship('User', back_populates='songs')
-  comments = db.relationship('Comment', back_populates='song')
+  comments = db.relationship('Comment', back_populates='song', cascade='all, delete-orphan')
 
   def to_dict(self):
     return {
