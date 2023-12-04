@@ -22,10 +22,12 @@ flask-wtf = "==1.1.1"
 jinja2 = "==3.1.2"
 mako = "==1.2.4"
 markupsafe = "==2.1.2"
-sqlalchemy = "*"
+sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
-boto3 = "*"
+boto3 = "==1.28.79"
+botocore = "==1.31.79"
+email-validator = "*"
 
 [dev-packages]
 
