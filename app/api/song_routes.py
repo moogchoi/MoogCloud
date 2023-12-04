@@ -63,7 +63,6 @@ def upload_song():
       user_id=current_user.id,
       name=form.data['name'],
       content=upload["url"],
-      duration=form.data['duration'],
       img=imgUpload["url"],
       description=form.data['description']
     )

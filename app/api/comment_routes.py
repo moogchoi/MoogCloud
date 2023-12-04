@@ -14,10 +14,20 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # get all comments for a song
-@comment_routes.route('/<int:song_id>', methods=['GET'])
+@comment_routes.route('/songs/<int:song_id>', methods=['GET'])
 def get_comments(song_id):
     comments = Comment.query.filter_by(song_id=song_id).all()
     return jsonify([comment.to_dict() for comment in comments])
+
+# get comment by id
+@comment_routes.route('/<int:comment_id>', methods=['GET'])
+def get_comment_by_id(comment_id):
+    comment = Comment.query.get(comment_id)
+
+    if not comment:
+        return jsonify({'error': 'Comment not found'}), 404
+
+    return jsonify(comment.to_dict()), 200
 
 # add a comment to a song
 @comment_routes.route('/<int:song_id>', methods=['POST'])
