@@ -67,7 +67,7 @@ const SongDetailsPage = () => {
             {comment.text}
             <OpenModalButton
               buttonText="Edit"
-              modalComponent={<CommentEditModal />}
+              modalComponent={<CommentEditModal commentId={comment.id} />}
             />
             <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
           </li>

@@ -31,7 +31,7 @@ const deleteComment = (commentId) => ({
 });
 
 export const fetchComments = (songId) => async (dispatch) => {
-  const response = await fetch(`/api/comments/${songId}`);
+  const response = await fetch(`/api/comments/songs/${songId}`);
   if (response.ok) {
     const data = await response.json();
     dispatch(getComments(data));

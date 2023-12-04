@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # get all comments for a song
-@comment_routes.route('/<int:song_id>', methods=['GET'])
+@comment_routes.route('/songs/<int:song_id>', methods=['GET'])
 def get_comments(song_id):
     comments = Comment.query.filter_by(song_id=song_id).all()
     return jsonify([comment.to_dict() for comment in comments])

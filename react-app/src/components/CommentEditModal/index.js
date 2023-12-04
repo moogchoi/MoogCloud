@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editComment } from '../../store/comment';
+import { editComment, fetchCommentById } from '../../store/comment';
 import { useModal } from '../../context/Modal';
 
-const CommentEditModal = () => {
+const CommentEditModal = ({ commentId }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const commentToEdit = useSelector((state) => state.modal.commentToEdit);
   const [editedComment, setEditedComment] = useState('');
+
+  useEffect(() => {
+    dispatch(fetchCommentById(commentId));
+  }, [commentId, dispatch]);
+
+  const commentToEdit = useSelector((state) => state.comments.currentComment);
 
   useEffect(() => {
     setEditedComment(commentToEdit?.text || '');
@@ -36,6 +41,5 @@ const CommentEditModal = () => {
     </div>
   );
 };
-
 
 export default CommentEditModal;
