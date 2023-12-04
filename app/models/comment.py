@@ -12,7 +12,7 @@ class Comment(db.Model):
     text = db.Column(db.String(255), nullable=False)
 
     user = db.relationship('User', back_populates='comments')
-    song = db.relationship('Song', back_populates='comments', cascade='all, delete')
+    song = db.relationship('Song', back_populates='comments')
 
     def to_dict(self):
         return {

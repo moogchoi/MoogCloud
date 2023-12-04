@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { fetchSongById } from '../../store/song';
-import { fetchComments, addNewComment } from '../../store/comment';
+import { fetchComments, addNewComment, editComment, removeComment } from '../../store/comment';
 import SongDetails from '../SongDetails';
+import CommentEditModal from '../CommentEditModal';
+import OpenModalButton from '../OpenModalButton';
 
 const SongDetailsPage = () => {
   const { songId } = useParams();
   const dispatch = useDispatch();
   const song = useSelector((state) => state.songs.currentSong);
   const comments = useSelector((state) => state.comments.comments);
-  const currentUser = useSelector((state) => state.session.user?.id);
+  const currentUser = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [newComment, setNewComment] = useState('');
   const history = useHistory();
@@ -24,8 +26,11 @@ const SongDetailsPage = () => {
     };
 
     const response = await dispatch(addNewComment(songId, commentData));
-
     setNewComment('');
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    await dispatch(removeComment(commentId));
   };
 
   useEffect(() => {
@@ -58,10 +63,15 @@ const SongDetailsPage = () => {
       <h2>Comments</h2>
       <ul>
         {comments.map((comment) => (
-          <li key={comment.id}>{comment.text}</li>
-        ))}
-      </ul>
-
+          <li key={comment.id}>
+            {comment.text}
+            <OpenModalButton
+              buttonText="Edit"
+              modalComponent={<CommentEditModal />}
+            />
+            <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+          </li>
+        ))}</ul>
     </div>
   );
 };
