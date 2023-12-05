@@ -21,7 +21,6 @@ const ManageSongs = () => {
       {userSongs.map((song) => (
         <>
           <SongCard key={song.id} song={song} />
-          <DeleteButton songId={song.id} />
           <Link to={`/songs/edit/${song.id}`}>
             <button>Edit Song</button>
           </Link>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { editSong, fetchSongById } from '../../store/song';
 import DeleteButton from '../DeleteButton';
 
 const EditSongForm = () => {
   const { songId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const song = useSelector((state) => state.songs.currentSong);
   const [name, setName] = useState(song?.name || '');
   const [description, setDescription] = useState(song?.description || '');
@@ -36,6 +37,7 @@ const EditSongForm = () => {
     if (updatedSong.errors) {
       setErrors(updatedSong.errors);
     } else {
+      history.push('/current');
     }
   };
 
