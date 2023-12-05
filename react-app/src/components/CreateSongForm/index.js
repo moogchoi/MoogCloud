@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createSong } from '../../store/song';
+import { useHistory } from 'react-router-dom';
 
 const CreateSongForm = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const CreateSongForm = () => {
   const [img, setImg] = useState('');
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ const CreateSongForm = () => {
       setContent('');
       setImg('');
       setDescription('');
+      history.push('/current');
     }
   };
 
