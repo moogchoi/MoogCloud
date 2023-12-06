@@ -17,15 +17,27 @@ const ManageSongs = () => {
 
   return (
     <div>
-      <h1>Your Songs</h1>
-      {userSongs.map((song) => (
-        <>
-          <SongCard key={song.id} song={song} />
-          <Link to={`/songs/edit/${song.id}`}>
-            <button>Edit Song</button>
-          </Link>
-        </>
-      ))}
+      <div className="manage-songs">
+        <h1>Your Songs</h1>
+        {userSongs.length === 0 ? (
+          <div>
+            <p>You currently have no songs.</p>
+            <p>Would you like to upload a new song?</p>
+            <Link to="/new">
+              <button>Upload New Song</button>
+            </Link>
+          </div>
+        ) : (
+          userSongs.map((song) => (
+            <div key={song.id}>
+              <SongCard song={song} />
+              <Link to={`/songs/edit/${song.id}`}>
+                <button>Edit Song</button>
+              </Link>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

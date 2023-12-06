@@ -27,20 +27,20 @@ function Navigation({ isLoaded }){
           </NavLink>
         </div>
       </div>
-			<div className='github-links'>
+      <div className="right-nav-container">
+        <div className='github-links'>
           <div className='github-developer'>
           <a href="https://github.com/moogchoi">
             <div className='github'>
               <img
-								src={github}
+			  				src={github}
                 id="github-logo"
                 alt=""
               ></img>
             </div>
-            </a>
+          </a>
           </div>
         </div>
-      <div className="right-nav-container">
         {sessionUser ? (
           <><button onClick={handleLogout} className="login">
             Logout

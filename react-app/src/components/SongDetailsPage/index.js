@@ -21,6 +21,16 @@ const SongDetailsPage = () => {
     e.preventDefault();
     setErrors([]);
 
+    if (!newComment.trim()) {
+      setErrors(['Comment cannot be empty.']);
+      return;
+    }
+
+    if (newComment.length > 100) {
+      setErrors(['Comment cannot exceed 100 characters.']);
+      return;
+    }
+
     const commentData = {
       text: newComment,
     };
