@@ -21,6 +21,16 @@ const SongDetailsPage = () => {
     e.preventDefault();
     setErrors([]);
 
+    if (!newComment.trim()) {
+      setErrors(['Comment cannot be empty.']);
+      return;
+    }
+
+    if (newComment.length > 100) {
+      setErrors(['Comment cannot exceed 100 characters.']);
+      return;
+    }
+
     const commentData = {
       text: newComment,
     };
@@ -43,35 +53,42 @@ const SongDetailsPage = () => {
       <h1>Song Details</h1>
       <SongDetails song={song} />
 
-      <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Add a new comment:
-        <input
-          type="text"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        />
-      </label>
-      <button type="submit">Add Comment</button>
-      </form>
+      {currentUser && (
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            Add a new comment:
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+          </label>
+          <button type="submit">Add Comment</button>
+        </form>
+      )}
 
       <h2>Comments</h2>
       <ul>
         {comments.map((comment) => (
           <li key={comment.id}>
             {comment.text}
-            <OpenModalButton
-              buttonText="Edit"
-              modalComponent={<CommentEditModal commentId={comment.id} />}
-            />
-            <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+            {currentUser && comment.user_id === currentUser.id && (
+              <>
+                <OpenModalButton
+                  buttonText="Edit"
+                  modalComponent={<CommentEditModal commentId={comment.id} />}
+                />
+                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+              </>
+            )}
           </li>
-        ))}</ul>
+        ))}
+      </ul>
     </div>
   );
 };
