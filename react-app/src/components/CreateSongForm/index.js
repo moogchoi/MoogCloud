@@ -69,7 +69,7 @@ const CreateSongForm = () => {
       </label>
 
       <label>
-        Image (URL):
+        Image:
         <input
           type="file"
           accepts="image/*"

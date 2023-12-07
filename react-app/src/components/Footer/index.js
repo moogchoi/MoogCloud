@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import './Footer.css'; // Import the CSS file
 
 const Footer = () => {
   const currentSong = useSelector((state) => state.songs.currentSong);
