@@ -1,19 +1,26 @@
 .song-card {
+  display: block;
   text-decoration: none;
-  color: black;
-  font-size: 14px;
-  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.song-card-img {
-  height: 200px;
-  width: 200px;
+
+.song-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .song-card-description {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 200px;
-  height: 1.2em;
-  white-space: nowrap;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.song-card-img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
 }

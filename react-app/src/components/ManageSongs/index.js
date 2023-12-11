@@ -6,6 +6,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserSongs } from "../../store/song";
 import SongCard from "../SongCard";
+import './ManageSongs.css'
 
 const ManageSongs = () => {
   const dispatch = useDispatch();
@@ -16,23 +17,23 @@ const ManageSongs = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="manage-songs-container">
       <div className="manage-songs">
-        <h1>Your Songs</h1>
+        <h1 className="manage-songs-heading">Your Songs</h1>
         {userSongs.length === 0 ? (
-          <div>
+          <div className="no-songs">
             <p>You currently have no songs.</p>
             <p>Would you like to upload a new song?</p>
             <Link to="/new">
-              <button>Upload New Song</button>
+              <button className="upload-button">Upload New Song</button>
             </Link>
           </div>
         ) : (
           userSongs.map((song) => (
-            <div key={song.id}>
+            <div key={song.id} className="song-card-container">
               <SongCard song={song} />
               <Link to={`/songs/edit/${song.id}`}>
-                <button>Edit Song</button>
+                <button className="edit-button">Edit Song</button>
               </Link>
             </div>
           ))
