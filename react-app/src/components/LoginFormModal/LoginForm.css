@@ -25,6 +25,7 @@
   width: 180px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .login-form {
