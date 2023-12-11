@@ -1,0 +1,74 @@
+.song-details-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.song-details-page h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  margin-top: 20px;
+}
+
+.error-list {
+  list-style: none;
+  padding: 0;
+  color: red;
+}
+
+.comment-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.comment-submit {
+  background-color: #f50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.comments-heading {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.comments-list {
+  padding: 0;
+}
+
+.comment-item {
+  margin-bottom: 15px;
+}
+
+.edit-modal-button,
+.delete-comment-button {
+  margin-left: 10px;
+}
+
+.edit-modal-button {
+  background-color: #f50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-comment-button {
+  background-color: #f50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}

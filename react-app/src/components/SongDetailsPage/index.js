@@ -6,6 +6,7 @@ import { fetchComments, addNewComment, editComment, removeComment } from '../../
 import SongDetails from '../SongDetails';
 import CommentEditModal from '../CommentEditModal';
 import OpenModalButton from '../OpenModalButton';
+import './SongDetailsPage.css'
 
 const SongDetailsPage = () => {
   const { songId } = useParams();
@@ -49,47 +50,56 @@ const SongDetailsPage = () => {
   }, [dispatch, songId]);
 
   return (
-    <div>
-      <h1>Song Details</h1>
+    <div className="song-details-page">
       <SongDetails song={song} />
 
       {currentUser && (
-        <form onSubmit={handleSubmit}>
-          <ul>
+        <form className="comment-form" onSubmit={handleSubmit}>
+          <ul className="error-list">
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label>
+          <label className="comment-label">
             Add a new comment:
             <input
+              className="comment-input"
               type="text"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />
           </label>
-          <button type="submit">Add Comment</button>
+          <button className="comment-submit" type="submit">
+            Add Comment
+          </button>
         </form>
       )}
 
-      <h2>Comments</h2>
-      <ul>
+      <h2 className="comments-heading">Comments</h2>
+      <ul className="comments-list">
         {comments.map((comment) => (
-          <li key={comment.id}>
+          <li key={comment.id} className="comment-item">
             {comment.text}
             {currentUser && comment.user_id === currentUser.id && (
               <>
                 <OpenModalButton
+                  className="edit-modal-button"
                   buttonText="Edit"
                   modalComponent={<CommentEditModal commentId={comment.id} />}
                 />
-                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                <button
+                  className="delete-comment-button"
+                  onClick={() => handleDeleteComment(comment.id)}
+                >
+                  Delete
+                </button>
               </>
             )}
           </li>
         ))}
       </ul>
     </div>
+
   );
 };
 

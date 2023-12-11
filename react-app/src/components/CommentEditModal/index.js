@@ -27,17 +27,20 @@ const CommentEditModal = ({ commentId }) => {
   };
 
   return (
-    <div>
-      <h2>Edit Comment</h2>
-      <label>
+    <div className="comment-edit-modal">
+      <h2 className="edit-modal-heading">Edit Comment</h2>
+      <label className="edit-modal-label">
         Edit your comment:
         <input
+          className="edit-modal-input"
           type="text"
           value={editedComment}
           onChange={(e) => setEditedComment(e.target.value)}
         />
       </label>
-      <button onClick={handleEditComment}>Save Changes</button>
+      <button className="edit-modal-button" onClick={handleEditComment}>
+        Save Changes
+      </button>
     </div>
   );
 };

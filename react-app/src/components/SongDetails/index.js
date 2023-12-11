@@ -1,4 +1,5 @@
 import React from 'react';
+import './SongDetails.css';
 
 const SongDetails = ({ song }) => {
   if (!song) {
@@ -6,10 +7,14 @@ const SongDetails = ({ song }) => {
   }
 
   return (
-    <div className="song-details">
-      <h2>{song.name}</h2>
-      <p>{song.description}</p>
-      <img src={song.img}></img>
+    <div className="song-details-container">
+      <div className="song-details">
+        <img className="song-image" src={song.img} alt={song.name} />
+        <div className="song-details-text">
+          <p className="song-title">{song.name}</p>
+          <p className="song-description">{song.description}</p>
+        </div>
+      </div>
     </div>
   );
 };
