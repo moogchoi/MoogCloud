@@ -11,7 +11,7 @@ Live Website: https://moogcloud.onrender.com/
 
    User Authentication:
 
-      MoogCloud protects the security of accounts registered with it by encrypting and securing passwords to offer security to users signing up. A demo user is also available to allow exploration of the site. Users must be logged in to access features such as portfolio, search, and stock purchasing.
+      MoogCloud protects the security of accounts registered with it by encrypting and securing passwords to offer security to users signing up. A demo user is also available to allow exploration of the site. Users must be logged in to access the songs and comments features.
 
    Songs:
 
