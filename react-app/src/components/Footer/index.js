@@ -8,7 +8,6 @@ const Footer = () => {
   const currentSong = useSelector((state) => state.songs.currentSong);
 
   useEffect(() => {
-    console.log('Current Song:', currentSong);
   }, [currentSong]);
 
   return (
@@ -16,7 +15,7 @@ const Footer = () => {
       {currentSong && (
         <AudioPlayer
           src={currentSong.content}
-          onPlay={(e) => console.log('onPlay')}
+          onPlay={(e) => ('onPlay')}
         />
       )}
     </div>
