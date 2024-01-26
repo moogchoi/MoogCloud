@@ -38,7 +38,7 @@ const CommentEditModal = ({ commentId }) => {
           onChange={(e) => setEditedComment(e.target.value)}
         />
       </label>
-      <button className="edit-modal-button" onClick={handleEditComment}>
+      <button className="save-modal-button" onClick={handleEditComment}>
         Save Changes
       </button>
     </div>
