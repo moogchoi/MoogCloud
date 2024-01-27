@@ -51,25 +51,39 @@
 
 .comment-item {
   margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-buttons {
+  display: flex;
+  align-items: center;
 }
 
 .edit-modal-button,
 .delete-comment-button {
   margin-left: 10px;
-}
-
-.edit-modal-button {
-  background-color: #f50;
-  color: white;
-  padding: 8px 12px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
 
-.delete-comment-button {
+.edit-modal-button img,
+.delete-comment-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.save-modal-button {
   background-color: #f50;
   color: white;
-  padding: 8px 12px;
+  padding: 5px 10px;
   border: none;
   cursor: pointer;
+  margin-left: 10px;
 }

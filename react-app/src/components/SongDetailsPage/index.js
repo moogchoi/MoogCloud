@@ -6,7 +6,9 @@ import { fetchComments, addNewComment, editComment, removeComment } from '../../
 import SongDetails from '../SongDetails';
 import CommentEditModal from '../CommentEditModal';
 import OpenModalButton from '../OpenModalButton';
-import './SongDetailsPage.css'
+import './SongDetailsPage.css';
+import deletebtn from '../Images/deletebtn.svg';
+import editbtn from '../Images/editbtn.svg';
 
 const SongDetailsPage = () => {
   const { songId } = useParams();
@@ -79,21 +81,24 @@ const SongDetailsPage = () => {
       <ul className="comments-list">
         {comments.map((comment) => (
           <li key={comment.id} className="comment-item">
-            {comment.text}
+            <div className="comment-content">
+              {/* {comment.user_id} */}
+              {comment.text}
+            </div>
             {currentUser && comment.user_id === currentUser.id && (
-              <>
+              <div className="comment-buttons">
                 <OpenModalButton
                   className="edit-modal-button"
-                  buttonText="Edit"
+                  buttonText={<img src={editbtn} alt="Edit" />}
                   modalComponent={<CommentEditModal commentId={comment.id} />}
                 />
                 <button
                   className="delete-comment-button"
                   onClick={() => handleDeleteComment(comment.id)}
                 >
-                  Delete
+                  <img src={deletebtn} alt="Delete" />
                 </button>
-              </>
+              </div>
             )}
           </li>
         ))}
