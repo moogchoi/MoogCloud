@@ -36,4 +36,5 @@
   grid-template-columns: repeat(5,250px);
   grid-template-rows: 300px 300px;
   place-items: center;
+  margin-bottom: 50px;
 }
