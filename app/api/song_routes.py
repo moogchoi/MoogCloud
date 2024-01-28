@@ -49,12 +49,12 @@ def upload_song():
     content = form.data['content']
     content.filename = get_unique_filename(content.filename)
     upload = upload_file_to_s3(content)
-    print(upload)
+    # print(upload)
 
     img = form.data['img']
     img.filename = get_unique_filename(img.filename)
     imgUpload = upload_file_to_s3(img)
-    print(imgUpload)
+    # print(imgUpload)
 
     if "url" not in upload:
        return {'errors': validation_errors_to_error_messages(upload.errors)}, 400

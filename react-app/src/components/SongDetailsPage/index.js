@@ -82,10 +82,13 @@ const SongDetailsPage = () => {
         {comments.map((comment) => (
           <li key={comment.id} className="comment-item">
             <div className="comment-content">
-              {/* {comment.user_id} */}
-              {comment.text}
-            </div>
-            {currentUser && comment.user_id === currentUser.id && (
+              <div className="comment-username">
+                <strong>{comment.username}</strong>
+              </div>
+              <div className="comment-text">
+                {comment.text}
+              </div>
+              {currentUser && comment.user_id === currentUser.id && (
               <div className="comment-buttons">
                 <OpenModalButton
                   className="edit-modal-button"
@@ -99,7 +102,8 @@ const SongDetailsPage = () => {
                   <img src={deletebtn} alt="Delete" />
                 </button>
               </div>
-            )}
+              )}
+            </div>
           </li>
         ))}
       </ul>

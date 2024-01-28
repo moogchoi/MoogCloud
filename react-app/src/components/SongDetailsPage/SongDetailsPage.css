@@ -56,17 +56,25 @@
 }
 
 .comment-content {
-  flex: 1;
+  font-size: 14px;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 4px;
 }
 
 .comment-buttons {
   display: flex;
-  align-items: center;
+  padding-top: 8px;
 }
 
 .edit-modal-button,
 .delete-comment-button {
-  margin-left: 10px;
+  margin-left: 3px;
   background-color: transparent;
   border: none;
   cursor: pointer;
