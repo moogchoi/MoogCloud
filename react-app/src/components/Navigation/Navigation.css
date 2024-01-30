@@ -28,34 +28,13 @@
 }
 
 #landing-logo img {
-  height: 25px;
+  height: 35px;
 }
 
 #github-logo{
-  width: 30px;
-  height: 30px;
-}
-
-.github{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: black;
-}
-
-.github-developer {
-  display: flex;
-  width: 100%;
-  height: 40px;
-  gap: 10px;
-  text-decoration: none;
-  color: black;
-}
-
-.github-text{
-  text-decoration: none;
-  color: black;
+  width: 29px;
+  height: 29px;
+  margin-right: 5px;
 }
 
 .github-links{
@@ -64,7 +43,6 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  margin-right: 7px;
 }
 
 .right-nav-container{

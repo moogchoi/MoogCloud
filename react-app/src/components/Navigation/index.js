@@ -40,6 +40,13 @@ function Navigation({ isLoaded }){
             </div>
           </a>
           </div>
+          <div className='about-me'>
+          <a href="https://moogchoi.github.io">
+            <button className='login'>
+              About Me
+            </button>
+          </a>
+          </div>
         </div>
         {sessionUser ? (
           <><button onClick={handleLogout} className="login">
