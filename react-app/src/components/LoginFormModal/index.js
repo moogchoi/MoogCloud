@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
+import '../../index.css';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ function LoginFormModal() {
 
   return (
     <>
-    <div className="login-container">
-      <h3>Log In</h3>
+    <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+      <h1 class="font-bold text-center text-2xl mb-5">Your Logo</h1>
       <form className='login-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
