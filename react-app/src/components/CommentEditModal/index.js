@@ -27,20 +27,24 @@ const CommentEditModal = ({ commentId }) => {
   };
 
   return (
-    <div className="comment-edit-modal">
-      <h2 className="edit-modal-heading">Edit Comment</h2>
-      <label className="edit-modal-label">
-        Edit your comment:
-        <input
-          className="edit-modal-input"
-          type="text"
-          value={editedComment}
-          onChange={(e) => setEditedComment(e.target.value)}
-        />
-      </label>
-      <button className="save-modal-button" onClick={handleEditComment}>
-        Save Changes
-      </button>
+    <div className="bg-white shadow w-full rounded-lg">
+      <form className="px-5 py-5" onSubmit={handleEditComment}>
+        <label className="block mb-4">
+          <span className="font-bold text-sm text-gray-600">Edit your comment:</span>
+          <textarea
+            className="border rounded-lg px-3 py-2 mt-1 text-sm w-full"
+            type="text"
+            rows="2"
+            value={editedComment}
+            onChange={(e) => setEditedComment(e.target.value)}
+          />
+        </label>
+        <div className="flex justify-end">
+          <button type="submit" className="bg-orange-500 hover:bg-orange-700 text-white font-semibold text-center inline-block py-2 px-3 rounded max-w-[100px]">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
