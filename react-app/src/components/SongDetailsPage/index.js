@@ -56,24 +56,28 @@ const SongDetailsPage = () => {
       <SongDetails song={song} />
 
       {currentUser && (
-        <form className="comment-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col p-4 mt-24">
           <ul className="error-list">
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label className="comment-label">
+          <label htmlFor="comment" className="mb-2 font-bold text-lg text-gray-900">
             Add a new comment:
-            <input
-              className="comment-input"
-              type="text"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
           </label>
-          <button className="comment-submit" type="submit">
-            Add Comment
-          </button>
+          <textarea
+            id="comment"
+            name="comment"
+            rows="2"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            className="mb-4 px-3 py-2 border-2 border-gray-300 rounded-lg"
+          ></textarea>
+          <div className="flex justify-end">
+            <button type="submit" className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded max-w-[100px]">
+              Submit
+            </button>
+          </div>
         </form>
       )}
 
