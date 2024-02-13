@@ -14,7 +14,9 @@ const DeleteButton = ({ songId }) => {
   };
 
   return (
-    <button onClick={handleDelete}>Delete Song</button>
+    <div className="flex justify-end">
+      <button className="bg-orange-500 hover:bg-orange-700 text-white font-semibold text-center inline-block py-2 px-3 rounded mt-2 w-20" onClick={handleDelete}>Delete</button>
+    </div>
   );
 };
 
