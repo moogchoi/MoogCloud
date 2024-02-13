@@ -43,34 +43,40 @@ const EditSongForm = () => {
   };
 
   return (
-    <div className="edit-song-form-container">
-      <form className="edit-song-form" onSubmit={handleSubmit}>
-        <h1 className="edit-song-heading">Edit Song</h1>
-        <div className="input-field">
-          <label className="input-label">Name</label>
+    <div className="bg-white shadow rounded-lg w-full max-w-[40%] mx-auto mt-8">
+      <form className="px-5 py-7" onSubmit={handleSubmit}>
+        <h1 className="text-lg font-semibold text-gray-800 mb-5">Edit Song</h1>
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-600">Name</label>
           <input
-            className="input-text"
+            className="border rounded-lg px-3 py-2 mt-1 w-full text-sm"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          {errors.name && <span className="error-message">{errors.name}</span>}
+          {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
         </div>
-        <div className="input-field">
-          <label className="input-label">Description</label>
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-600">Description</label>
           <textarea
-            className="input-textarea"
+            className="border rounded-lg px-3 py-2 mt-1 w-full text-sm"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          {errors.description && (
-            <span className="error-message">{errors.description}</span>
-          )}
+          {errors.description && <span className="text-red-500 text-sm">{errors.description}</span>}
         </div>
-        <button className="submit-button" type="submit">Update Song</button>
+        <div className="flex justify-end">
+        <button
+          className="bg-orange-500 hover:bg-orange-700 text-white font-semibold text-center inline-block py-2 px-3 rounded w-20"
+          type="submit"
+        >
+          Update
+        </button>
+        </div>
         <DeleteButton songId={songId} />
       </form>
     </div>
+
   );
 };
 

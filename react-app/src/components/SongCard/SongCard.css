@@ -19,8 +19,8 @@
 }
 
 .song-card-img {
-  width: 50%;
-  height: 100%;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-bottom: 1px solid #ddd;
 }
